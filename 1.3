@@ -1,0 +1,100 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) 
+	{
+		double amount=0.00;
+		double interest=0.00;
+		int days=0;
+		int age=0;
+		int category=0;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the Amount");
+		amount=sc.nextDouble();
+		System.out.println("Enter The Age");
+		age=sc.nextInt();
+		if(amount<=10000000 && category<=65)
+		{
+		    System.out.println("Enter No. of Days");
+		    days=sc.nextInt();
+		    if(days>=7&&days<=14)
+		    {
+		    interest=4.50;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=15&&days<=29)
+		    {
+		    interest=4.75;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=30&&days<=45)
+		    {
+		    interest=5.50;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=45&&days<=60)
+		    {
+		    interest=7;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=61&&days<=184)
+		    {
+		    interest=7.50;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=185&&days<=365)
+		    {
+		    interest=8;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		}
+		else if(amount<=10000000 && category>=65)
+		{
+		    System.out.println("Enter No. of Days");
+		    days=sc.nextInt();
+		    if(days>=7&&days<=14)
+		    {
+		    interest=5.00;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=15&&days<=29)
+		    {
+		    interest=5.25;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=30&&days<=45)
+		    {
+		    interest=6;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=45&&days<=60)
+		    {
+		    interest=7.50;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=61&&days<=184)
+		    {
+		    interest=8;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    if(days>=185&&days<=365)
+		    {
+		    interest=8.50;
+		    amount=(amount*interest)/100;
+		    System.out.println("Interest Gained:"+amount);
+		    }
+		    
+		}
+	}
+}
