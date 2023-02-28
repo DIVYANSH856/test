@@ -1,0 +1,210 @@
+package Interest_Calculator;
+
+import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.Scanner;
+
+abstract class Account{
+    double interestRate;
+    double amount;
+    abstract double calculateInterest();
+}
+
+class F_D extends Account{
+    int noOfDays;
+    double Age;
+    double calculateInterest() {
+        if(amount<10000000){
+            if(noOfDays>=7 && noOfDays<=14){
+                if(Age>=60){
+                    interestRate = 5;
+                }else interestRate = 4.5;
+            } else if (noOfDays>=15 && noOfDays<=29) {
+                if(Age>=60){
+                    interestRate = 5.25;
+                }else interestRate = 4.75;
+            } else if (noOfDays>=30 && noOfDays<=45) {
+                if(Age>=60){
+                    interestRate = 6;
+                }else interestRate = 5.5;
+            } else if (noOfDays>=45 && noOfDays<=60) {
+                if(Age>=60){
+                    interestRate = 7.5;
+                }else interestRate = 7.0;
+            } else if (noOfDays>=61 && noOfDays<=184) {
+                if(Age>=60){
+                    interestRate = 8;
+                }else interestRate = 7.5;
+            } else if (noOfDays>=185 && noOfDays<=365) {
+                if(Age>=60){
+                    interestRate = 8.5;
+                }else interestRate = 8;
+            }
+        }else{
+            if(noOfDays>=7 && noOfDays<=14){
+                if(Age>=60){
+                    interestRate = 6.5;
+                }else interestRate = 6.5;
+            } else if (noOfDays>=15 && noOfDays<=29) {
+                if(Age>=60){
+                    interestRate = 6.75;
+                }else interestRate = 6.75;
+            } else if (noOfDays>=30 && noOfDays<=45) {
+                if(Age>=60){
+                    interestRate = 6.75;
+                }else interestRate = 6.75;
+            } else if (noOfDays>=45 && noOfDays<=60) {
+                if(Age>=60){
+                    interestRate = 8;
+                }else interestRate = 8;
+            } else if (noOfDays>=61 && noOfDays<=184) {
+                if(Age>=60){
+                    interestRate = 8.5;
+                }else interestRate = 8.5;
+            } else if (noOfDays>=185 && noOfDays<=365) {
+                if(Age>=60){
+                    interestRate = 10;
+                }else interestRate = 10;
+            }
+        }
+
+        double amount_gain  = amount * (interestRate/100);
+        return amount_gain;
+    }
+}
+
+class R_D extends Account{
+    double noOfMonths;
+    double monthlyAmount;
+    
+    double Age;
+    double calculateInterest() {
+        
+        if(noOfMonths==6){
+            if(Age>60){
+                interestRate=8;
+            }else{
+                interestRate = 7.5;
+            }
+        } else if (noOfMonths==9) {
+            if(Age>60){
+                interestRate=8.25;
+            }else{
+                interestRate =7.75; 
+            }
+        } else if (noOfMonths==12) {
+            if(Age>60){
+                interestRate=8.5;
+            }else{
+                interestRate =8;
+            }
+        } else if (noOfMonths==15) {
+            if(Age>60){
+                interestRate=8.70;
+            }else{
+                interestRate =8.25;
+            }
+        } else if (noOfMonths==18) {
+            if(Age>60){
+                interestRate=9;
+            }else{
+                interestRate =8.5;
+            }
+        } else if (noOfMonths==21) {
+            if(Age>60){
+                interestRate=9.25;
+            }else{
+                interestRate =8.75;
+            }
+        }
+
+        double Amount_Gain = monthlyAmount*(( noOfMonths*(noOfMonths+1))/24 )*(interestRate/100);
+        return Amount_Gain;
+    }
+}
+
+class S_B extends Account{
+    String Accounttype;
+    double calculateInterest() {
+        if(Accounttype.equals("Normal")||Accounttype.equals("normal")){
+            interestRate = 4;
+        } else if (Accounttype.equals("NRI")||Accounttype.equals("nri")) {
+            interestRate = 6;
+        }
+        double Amount_Gain = amount*(interestRate/100);
+        return Amount_Gain;
+    }
+}
+public class Interest {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        double months[] = {6,9,12,15,18,21};
+
+        F_D fd = new F_D();
+        R_D rd = new R_D();
+        S_B sb = new S_B();
+        int ch = 0;
+        while(ch!=4){
+        System.out.println("MAIN MENU");
+        System.out.println("--------------------");
+            System.out.println("\t\t1. Interest Calculator -FD");
+            System.out.println("\t\t2. Interest Calculator -RD");
+            System.out.println("\t\t3. Interest Calculator -SB");
+            System.out.println("\t\t4. Exit");
+            System.out.println("Enter your choice: ");
+            ch = input.nextInt();
+            switch (ch){
+                case 1:
+                    System.out.println("Enter The FD amount: ");
+                    fd.amount = input.nextDouble();
+                    System.out.println("Enter the number of days: ");
+                    fd.noOfDays = input.nextInt();
+                    System.out.println("Enter your age: ");
+                    fd.Age = input.nextDouble();
+                    System.out.println("Interest gained is: "+fd.calculateInterest());
+                    System.out.println();
+                    break;
+                case 2:
+                    System.out.println("Enter The monthly amount: ");
+                    rd.monthlyAmount = input.nextDouble();
+                    System.out.println("Enter No. of months: ");
+                    rd.noOfMonths = input.nextDouble();
+                    int check=0;
+                    for(int i = 0;i<months.length;i++){
+                        if(rd.noOfMonths==months[i]){
+                            check=1;
+                        }
+                    }
+                    if(check==0){
+                        System.out.println("Please Enter No of months in period of ");
+                        System.out.println(Arrays.toString(months));
+                        System.out.println();
+                        break;
+                    }
+                    System.out.println("Entrer your Age: ");
+                    rd.Age = input.nextDouble();
+                    System.out.println("Interest gain is: "+rd.calculateInterest());
+                    System.out.println();
+                    break;
+                case 3:
+                    System.out.println("Enter your amount: ");
+                    sb.amount = input.nextDouble();
+                    System.out.println("Enter you account Type: Normal,NRI: ");
+                    sb.Accounttype=input.next();
+                    System.out.println("Interest gain is: "+sb.calculateInterest());
+                    System.out.println();
+                    break;
+                case 4:
+                    System.out.println("Thankyou for using!!!!!!!!!");
+                    ch=4;
+                    break;
+                default:
+                    System.out.println("Enter correct choice");
+                    break;
+            }
+
+        }
+
+
+    }
+}
