@@ -1,0 +1,66 @@
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+class java4 {
+    public static void main(String[] args) throws IOException {
+        Scanner scn= new Scanner(System.in);
+        System.out.println("Main menu");
+        System.out.println("1- Add Employee Details");
+        System.out.println("2- Display ALL Records");
+        System.out.println("3- Delete ALL Records");
+        System.out.println("2- Display ALL Records");
+        System.out.println("3- EXIT");
+        int ch;
+        int i=0;
+        File f=new File("Employee.txt");
+        Employee e[] = new Employee[5];
+        do
+        {
+            System.out.println("Enter your choice: ");
+            ch=scn.nextInt();
+            switch(ch)
+            { case 1:
+                FileWriter fw = new FileWriter(f,true);
+                e[i]=new Employee();
+                e[i].get_details();
+                fw.write("Name: "+e[i].emp_name+" ID: "+e[i].emp_id+" Salary: "+e[i].emp_salary);
+                i++;
+                fw.close();
+                break;
+                case 2:
+                    Scanner fs = new Scanner(f);
+                    System.out.println("--Employee Details--");
+                    while(fs.hasNextLine())
+                    { String fcont= fs.nextLine();
+                        System.out.println(fcont);
+                    }
+                    fs.close();
+                    break;
+                case 3:
+                    System.out.println("Aborting...");
+                    break;
+            }
+        } while(ch!=3);
+    }
+}
+class Employee {
+    int emp_id;
+    String emp_name;
+    float emp_salary;
+    Scanner scn = new Scanner(System.in);
+    void get_details() {
+        System.out.print("Enter the Employee ID: ");
+        emp_id=scn.nextInt();
+        System.out.print("Enter the Employee's Name: ");
+        emp_name=scn.next();
+        System.out.print("Enter the salary of the employee: ");
+        emp_salary=scn.nextFloat();
+    }
+    void print_details()
+    {
+        System.out.println(" Name: "+emp_name+" ID: "+emp_id+" Salary: "+emp_salary);
+    }
+}
+
+
